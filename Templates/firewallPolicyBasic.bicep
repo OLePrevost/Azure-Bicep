@@ -1,9 +1,9 @@
 param name string
 param location string
-param policyTier string // 'Basic', 'Standard', 'Premium'
-param threatIntelMode string // 'AlertOnly', 'Deny', etc.
-param enableDnsProxy bool = false // DNS proxy setting (for Standard & Premium)
-param dnsSettings string = 'AzureProvided' // Default DNS setting
+param policyTier string  // 'Basic', 'Standard', 'Premium'
+param threatIntelMode string  // 'AlertOnly', 'Deny', etc.
+param enableDnsProxy bool = false  // DNS proxy setting for Standard & Premium
+param dnsSettings string = 'AzureProvided'  // Default DNS setting
 param tags object
 
 resource firewallPolicy 'Microsoft.Network/firewallPolicies@2023-05-01' = {
@@ -12,24 +12,24 @@ resource firewallPolicy 'Microsoft.Network/firewallPolicies@2023-05-01' = {
   tags: tags
   properties: {
     sku: {
-      tier: policyTier // Passed as parameter
+      tier: policyTier  // Passed as a parameter (Basic, Standard, Premium)
     }
-    threatIntelMode: threatIntelMode // Passed as parameter
+    threatIntelMode: threatIntelMode  // Passed as a parameter
 
-    // DNS Settings for Standard and Premium tiers
-    @if(policyTier != 'Basic') {
+    // Conditional DNS Settings for Standard and Premium tiers
+    @if (policyTier != 'Basic') {
       dnsSettings: {
-        servers: [] // If you want to specify custom DNS servers, add them here
+        servers: []  // Customize DNS servers here if needed
         proxySettings: {
-          enableProxy: enableDnsProxy // DNS proxy setting passed dynamically
+          enableProxy: enableDnsProxy  // Enable or disable DNS proxy based on the parameter
         }
       }
     }
 
-    // IDPS only for Premium tier
-    @if(policyTier == 'Premium') {
+    // Intrusion Detection and Prevention (IDPS) for Premium tier only
+    @if (policyTier == 'Premium') {
       intrusionDetection: {
-        mode: 'Deny' // Intrusion Detection and Prevention System mode for Premium
+        mode: 'Deny'  // IDPS mode for Premium tier
       }
     }
   }
