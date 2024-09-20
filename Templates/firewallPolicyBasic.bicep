@@ -1,16 +1,16 @@
 param name string
 param location string
-param tier string  
+param tier string
 param tags object
 
-resource firewallPolicy 'Microsoft.Network/firewallPolicies@2021-05-01' = {
-  name: name // Use the 'name' parameter
-  location: location // Use the 'location' parameter
+resource firewallPolicy 'Microsoft.Network/firewallPolicies@2023-11-01' = {
+  name: name
+  location: location
   tags: tags
-  sku: {
-    name: 'AZFW_VNet'
-    tier: tier  // Use the 'tier' parameter
-  }
   properties: {
+    sku: {
+      tier: tier  // Only "tier" should be specified here for firewall policies
+    }
+    // Other firewall policy settings
   }
 }
