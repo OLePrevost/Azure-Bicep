@@ -115,7 +115,7 @@ resource ruleCollectionGroup_5 'Microsoft.Network/firewallPolicies/ruleCollectio
             sourceAddresses: ['168.63.129.16']
             destinationAddresses: ['*']
             destinationPorts: ['53', '80', '32526']
-            protocols: ['TCP', 'UDP']
+            ipprotocols: ['TCP', 'UDP']
           }
         ]
       }
