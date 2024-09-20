@@ -10,19 +10,19 @@ resource ruleCollectionGroup_1 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-Testing-Network'
         priority: 500
-        ruleCollectionType: 'NetworkRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
       {
         name: 'RuleCollection-Testing-Application'
         priority: 515
-        ruleCollectionType: 'ApplicationRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
       {
         name: 'RuleCollection-Testing-DNAT'
         priority: 530
-        ruleCollectionType: 'NatRuleCollection'
+        ruleCollectionType: 'FirewallPolicyNatRuleCollection'  // Updated
         rules: []
       }
     ]
@@ -49,13 +49,13 @@ resource ruleCollectionGroup_3 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-AVDShortPath-Allow'
         priority: 11400
-        ruleCollectionType: 'NetworkRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
       {
         name: 'RuleCollection-LANToInternet-Allow'
         priority: 11200
-        ruleCollectionType: 'NetworkRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
     ]
@@ -72,25 +72,25 @@ resource ruleCollectionGroup_4 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-WebCategories-Explicit-Deny'
         priority: 16500
-        ruleCollectionType: 'ApplicationRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
       {
-        name: 'RuleCollection-WebCategries-Explicit-Allow'
+        name: 'RuleCollection-WebCategories-Explicit-Allow'
         priority: 17000
-        ruleCollectionType: 'ApplicationRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
       {
         name: 'RuleCollection-WebCategories-Default-Deny'
         priority: 17500
-        ruleCollectionType: 'ApplicationRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
       {
         name: 'RuleCollection-WebCategories-Default-Allow'
         priority: 18000
-        ruleCollectionType: 'ApplicationRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: []
       }
     ]
@@ -107,7 +107,7 @@ resource ruleCollectionGroup_5 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-AzurePrivateLink-Allow'
         priority: 21500
-        ruleCollectionType: 'NetworkRuleCollection'
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
         rules: [
           {
             name: 'AzurePrivateDNSResolver'
