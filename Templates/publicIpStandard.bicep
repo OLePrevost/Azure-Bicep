@@ -1,13 +1,13 @@
-param pipName string                 // Name of the Public IP
-param location string                // Region for the Public IP
-param ipVersion string               // IPv4 or IPv6
-param sku string                     // Standard or Basic SKU
-param zone array                     // Availability zones (can be an empty array if not used)
-param tier string                    // Regional or Global tier
-param assignment string              // Static or Dynamic IP assignment
-param routingPreference string       // Microsoft or Internet routing preference
-param ddosProtection bool            // Enable or disable DDoS protection
-param tags object                    // Resource tags
+param pipName string
+param location string
+param ipVersion string
+param sku string
+param zone array
+param tier string
+param assignment string
+param routingPreference string
+param ddosProtection bool
+param tags object
 
 resource publicIP 'Microsoft.Network/publicIPAddresses@2023-05-01' = {
   name: pipName
@@ -23,8 +23,7 @@ resource publicIP 'Microsoft.Network/publicIPAddresses@2023-05-01' = {
     ddosSettings: {
       protectionMode: ddosProtection ? 'VirtualNetworkInherited' : 'Disabled'
     }
-    routingPreference: routingPreference
-    idleTimeoutInMinutes: 4  // Optional: Default idle timeout
+    idleTimeoutInMinutes: 4
   }
   tags: tags
 }
