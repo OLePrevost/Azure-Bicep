@@ -1,8 +1,8 @@
-param policyName string
+param afwpName string
 
 // Rule Collection Group: RuleCollectionGroup-TestingAndTempRules
 resource ruleCollectionGroup_1 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${policyName}/RuleCollectionGroup-TestingAndTempRules'
+  name: '${afwpName}/RuleCollectionGroup-TestingAndTempRules'
   dependsOn: []
   properties: {
     priority: 500
@@ -31,7 +31,7 @@ resource ruleCollectionGroup_1 'Microsoft.Network/firewallPolicies/ruleCollectio
 
 // Rule Collection Group: RuleCollectionGroup-Internal-Network
 resource ruleCollectionGroup_2 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${policyName}/RuleCollectionGroup-Internal-Network'
+  name: '${afwpName}/RuleCollectionGroup-Internal-Network'
   dependsOn: [ruleCollectionGroup_1]
   properties: {
     priority: 1000
@@ -41,7 +41,7 @@ resource ruleCollectionGroup_2 'Microsoft.Network/firewallPolicies/ruleCollectio
 
 // Rule Collection Group: RuleCollectionGroup-Outbound-Network
 resource ruleCollectionGroup_3 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${policyName}/RuleCollectionGroup-Outbound-Network'
+  name: '${afwpName}/RuleCollectionGroup-Outbound-Network'
   dependsOn: [ruleCollectionGroup_2]
   properties: {
     priority: 11000
@@ -64,7 +64,7 @@ resource ruleCollectionGroup_3 'Microsoft.Network/firewallPolicies/ruleCollectio
 
 // Rule Collection Group: RuleCollectionGroup-Outbound-Application
 resource ruleCollectionGroup_4 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${policyName}/RuleCollectionGroup-Outbound-Application'
+  name: '${afwpName}/RuleCollectionGroup-Outbound-Application'
   dependsOn: [ruleCollectionGroup_3]
   properties: {
     priority: 16000
@@ -99,7 +99,7 @@ resource ruleCollectionGroup_4 'Microsoft.Network/firewallPolicies/ruleCollectio
 
 // Rule Collection Group: RuleCollectionGoup-Inbound-Network
 resource ruleCollectionGroup_5 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${policyName}/RuleCollectionGoup-Inbound-Network'
+  name: '${afwpName}/RuleCollectionGoup-Inbound-Network'
   dependsOn: [ruleCollectionGroup_4]
   properties: {
     priority: 21000
@@ -125,7 +125,7 @@ resource ruleCollectionGroup_5 'Microsoft.Network/firewallPolicies/ruleCollectio
 
 // Rule Collection Group: RuleCollectionGroup-Inbound-DNAT
 resource ruleCollectionGroup_6 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${policyName}/RuleCollectionGroup-Inbound-DNAT'
+  name: '${afwpName}/RuleCollectionGroup-Inbound-DNAT'
   dependsOn: [ruleCollectionGroup_5]
   properties: {
     priority: 31000
