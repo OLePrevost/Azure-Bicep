@@ -1,29 +1,24 @@
-// Premium Firewall Policy Bicep Template
-
 param name string
 param location string
+param tier string
+param tags object
 param threatIntelMode string  // e.g., 'AlertOnly', 'Deny'
 param enableDnsProxy bool = false  // Option to enable or disable DNS proxy
-param tags object
+param idp string
 
 resource firewallPolicy 'Microsoft.Network/firewallPolicies@2023-11-01' = {
   name: name
   location: location
   tags: tags
-
   properties: {
     sku: {
-      name: AZFW_Hub
-      tier: 'Premium'
+      tier: tier  // Only "tier" should be specified here for firewall policies
     }
     threatIntelMode: threatIntelMode
     dnsSettings: {
-      proxySettings: {
-        enableProxy: enableDnsProxy
-      }
+      enableProxy: enableDnsProxy
     }
     intrusionDetection: {
-      mode: 'Deny'  // Set to 'Deny' for IDPS in Premium tier
-    }
+      mode: idp
   }
 }
