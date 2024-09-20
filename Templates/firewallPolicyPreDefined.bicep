@@ -10,19 +10,28 @@ resource ruleCollectionGroup_1 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-Testing-Network'
         priority: 500
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: []
       }
       {
         name: 'RuleCollection-Testing-Application'
         priority: 515
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: []
       }
       {
         name: 'RuleCollection-Testing-DNAT'
         priority: 530
-        ruleCollectionType: 'FirewallPolicyNatRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyNatRuleCollection'  // Corrected type
+        action: {
+          type: 'DNAT'
+        }
         rules: []
       }
     ]
@@ -49,13 +58,19 @@ resource ruleCollectionGroup_3 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-AVDShortPath-Allow'
         priority: 11400
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: []
       }
       {
         name: 'RuleCollection-LANToInternet-Allow'
         priority: 11200
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: []
       }
     ]
@@ -72,34 +87,46 @@ resource ruleCollectionGroup_4 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-WebCategories-Explicit-Deny'
         priority: 16500
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Deny'
+        }
         rules: []
       }
       {
-        name: 'RuleCollection-WebCategories-Explicit-Allow'
+        name: 'RuleCollection-WebCategries-Explicit-Allow'
         priority: 17000
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: []
       }
       {
         name: 'RuleCollection-WebCategories-Default-Deny'
         priority: 17500
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Deny'
+        }
         rules: []
       }
       {
         name: 'RuleCollection-WebCategories-Default-Allow'
         priority: 18000
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: []
       }
     ]
   }
 }
 
-// Rule Collection Group: RuleCollectionGoup-Inbound-Network
+// Rule Collection Group: RuleCollectionGroup-Inbound-Network
 resource ruleCollectionGroup_5 'Microsoft.Network/firewallPolicies/ruleCollectionGroups@2023-11-01' = {
-  name: '${afwpName}/RuleCollectionGoup-Inbound-Network'
+  name: '${afwpName}/RuleCollectionGroup-Inbound-Network'
   dependsOn: [ruleCollectionGroup_4]
   properties: {
     priority: 21000
@@ -107,7 +134,10 @@ resource ruleCollectionGroup_5 'Microsoft.Network/firewallPolicies/ruleCollectio
       {
         name: 'RuleCollection-AzurePrivateLink-Allow'
         priority: 21500
-        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Updated
+        ruleCollectionType: 'FirewallPolicyFilterRuleCollection'  // Corrected type
+        action: {
+          type: 'Allow'
+        }
         rules: [
           {
             name: 'AzurePrivateDNSResolver'
