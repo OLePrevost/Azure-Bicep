@@ -13,6 +13,7 @@ resource firewallPolicy 'Microsoft.Network/firewallPolicies@2023-11-01' = {
 
   properties: {
     sku: {
+      name: AZFW_Hub
       tier: 'Premium'
     }
     threatIntelMode: threatIntelMode
